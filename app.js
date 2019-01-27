@@ -80,14 +80,16 @@ document.addEventListener('click', (e) => {
     UI.showModal(e);
     // UI.showCartBar(e);
     UI.closeModal(e);
-    UI.addToCart(e);
-    UI.removeCdBar(e);
+    UI.updateCart(e);
+    Store.removeCdBar(e);
     Store.addToCart(e);
 
     //add btn !!
 });
 
 class Store {
+
+
     static addToCart(e) {
 
 
@@ -108,7 +110,7 @@ class Store {
                     }
                 })
 
-                UI.addToCart();
+                UI.updateCart();
 
             } else {
 
@@ -129,7 +131,7 @@ class Store {
                 window.localStorage.setItem('cart', cart);
 
 
-                UI.addToCart();
+                UI.updateCart();
 
             }
 
@@ -139,21 +141,40 @@ class Store {
 
 
         }
-
-
+        
+        
     }
-
+    static removeFromCart(){
+        let cart = window.localStorage.getItem('cart');
+        cart--;
+        window.localStorage.setItem('cart', cart);
+    }
+       
+    
+    static removeCdBar(e){
+        if(e.target.classList.contains('cart-bar-remove')){
+            const cdName=e.target.parentElement.children[1].firstChild.nodeValue;
+            const locStorCdArr=JSON.parse(window.localStorage.getItem('cartArr'));
+            locStorCdArr.forEach((e,index)=>{
+                if(cdName==e.name){
+                    locStorCdArr.splice(index,1);
+                    window.localStorage.setItem('cartArr',JSON.stringify(locStorCdArr));
+                }
+            })
+            
+                
+            Store.removeFromCart()
+            e.target.parentElement.remove()
+            UI.updateCart();
+                }
+    //UI.load
+    }
 
 }
 
 
 
 class UI {
-    static removeCdBar(e){
-        console.log(e.target.classList);
-// if(e.target.classList.contains('cart-bar-btn')){
-// }
-    }
 
     static showCartBar(e) {
         
@@ -183,36 +204,38 @@ class UI {
 
         const cartArr = JSON.parse(window.localStorage.getItem('cartArr'));
         const cartbody = document.querySelector('.cart-bar-body');
-        if(cartArr==null){
+     
+        if(cartArr==null||cartArr.length==0){
             const div = document.createElement('div');
             div.classList.add('cart-bar-empty');
-div.innerHTML=` <h2>The cart is empty!</h2>`;
-cartbody.appendChild(div);
+            div.innerHTML=` <h2>The cart is empty!</h2>`;
+            cartbody.appendChild(div);
         }
         else{
-            const div = document.createElement('div');
+            
             cartArr.forEach((e, index) => {
+                const div = document.createElement('div');
                 div.classList.add('cart-bar-item');
                 div.innerHTML = `<img src="${e.url}" alt="" class="cart-bar-img">
-    <h2 class="cart-bar-title">${e.name}</h2>
-    <span class="cart-bar-artist"> by ${e.artist}</span>
-    <span class="cart-bar-price">${e.price}$</span>
-    <a href="#" class="cart-bar-remove btn btn-outline-danger btn-sm">Remove</a></div> </div>`
+                <h2 class="cart-bar-title">${e.name}</h2>
+                <span class="cart-bar-artist"> by ${e.artist}</span>
+                <span class="cart-bar-price">${e.price}$</span>
+                <a href="#" class="cart-bar-remove btn btn-outline-danger btn-sm">Remove</a></div> </div>`
                 cartbody.appendChild(div);
     
             })
 
         }
     }
-    static addToCart() {
+    static updateCart() {
 
         const carritoNumb = document.querySelector('.carrito-numb');
         const carritoNumbLocal = window.localStorage.getItem('cart');
 
-        if (carritoNumbLocal == null) {
+        if (carritoNumbLocal == null ||carritoNumbLocal == "0" ) {
             carritoNumb.innerHTML = "Empty cart";
         }
-        if (carritoNumbLocal !== null) {
+        if (carritoNumbLocal > 0) {
             carritoNumb.innerHTML = carritoNumbLocal;
         }
     }
