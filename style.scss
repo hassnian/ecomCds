@@ -16,11 +16,17 @@ nav {
 .carrito {
     position: absolute;
     right: 15vw;
-
+    top: 0;
+    padding:10px;
+    background-color: black;
+    color: white;
+    
+    
+   
 }
-
-.cart-c:hover,
-.cart-c:focus {
+        
+.carrito:hover,
+.carrito:focus {
 
     cursor: pointer;
 }
@@ -189,6 +195,22 @@ nav {
     overflow: scroll;
     overflow-x: hidden;
     height: 73%;
+
+    .cart-bar-empty{
+        background-image: url('https://i.gifer.com/GKoy.gif');
+        background-size: cover;
+        background-position: center;
+        // filter: blur(1px);
+        height: 100%;
+        box-sizing: border-box;
+        position: relative;
+        h2{
+            font-weight: 600;
+            color: white;
+            position: absolute;
+           
+        }
+    }
 }
 
 .cart-bar-item {

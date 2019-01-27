@@ -78,7 +78,7 @@ document.addEventListener('click', (e) => {
     // console.log(e.target);
 
     UI.showModal(e);
-    UI.showCartBar(e);
+    // UI.showCartBar(e);
     UI.closeModal(e);
     UI.addToCart(e);
     UI.removeCdBar(e);
@@ -156,7 +156,7 @@ class UI {
     }
 
     static showCartBar(e) {
-        if (e.target.classList.contains('cart-c')) {
+        
             const body = document.querySelector('.cd-list');
             const div = document.createElement('div');
             div.classList.add('cart-bar-g');
@@ -170,11 +170,28 @@ class UI {
             <a href="#" class="btn btn-danger btn-lg  cart-bar-btn">Checkout</a>`
             ;
             body.appendChild(div);
-            const cartArr = JSON.parse(window.localStorage.getItem('cartArr'));
+            UI.loadCartBarItems();
 
+
+
+
+        
+
+    }
+
+    static loadCartBarItems(){
+
+        const cartArr = JSON.parse(window.localStorage.getItem('cartArr'));
+        const cartbody = document.querySelector('.cart-bar-body');
+        if(cartArr==null){
+            const div = document.createElement('div');
+            div.classList.add('cart-bar-empty');
+div.innerHTML=` <h2>The cart is empty!</h2>`;
+cartbody.appendChild(div);
+        }
+        else{
+            const div = document.createElement('div');
             cartArr.forEach((e, index) => {
-                const cartbody = document.querySelector('.cart-bar-body');
-                const div = document.createElement('div');
                 div.classList.add('cart-bar-item');
                 div.innerHTML = `<img src="${e.url}" alt="" class="cart-bar-img">
     <h2 class="cart-bar-title">${e.name}</h2>
@@ -182,15 +199,10 @@ class UI {
     <span class="cart-bar-price">${e.price}$</span>
     <a href="#" class="cart-bar-remove btn btn-outline-danger btn-sm">Remove</a></div> </div>`
                 cartbody.appendChild(div);
-
+    
             })
 
-
-
-
-        
         }
-
     }
     static addToCart() {
 
