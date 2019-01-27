@@ -2,7 +2,21 @@
     margin: 0;
     padding: 0;
 }
-
+.fondo{
+    // background-image:url("http://www.tricksware.com/wp-content/uploads/2017/04/Marshmello-2015-Joytime.png");
+    transition: 0.3s ease-out;
+    background-position: center;
+    filter: blur(5px);
+    opacity: 0.8;
+    background-position-y: 40%;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
 nav {
     display: flex;
     align-items: center;

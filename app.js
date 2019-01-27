@@ -74,6 +74,20 @@ const modal = document.querySelector('.modal-g');
 const modalX = document.querySelector('.modal-x');
 
 
+
+//change background
+document.addEventListener("mouseover",(e)=>{
+    if(e.target.classList.contains('cd-text')){
+           const fondo=document.querySelector('.fondo');
+           fondo.style.backgroundImage=e.target.parentElement.style.backgroundImage;
+
+        
+    }
+})
+
+
+
+
 document.addEventListener('click', (e) => {
     // console.log(e.target);
 
@@ -103,6 +117,7 @@ class Store {
                 const arr = [];
                 cds.forEach((e, index) => {
                     if (e.name == name) {
+
                         let currentCd = cds[index];
 
                         arr.push(currentCd);
@@ -117,8 +132,8 @@ class Store {
                 const name = e.target.parentElement.children[2].firstChild.nodeValue;
                 cds.forEach((e, index) => {
                     if (e.name == name) {
-                        let currentCd = cds[index];
 
+                        let currentCd = cds[index];
                         const cartArr = JSON.parse(window.localStorage.getItem('cartArr'));
                         cartArr.push(currentCd);
 
@@ -126,6 +141,9 @@ class Store {
 
                     }
                 })
+                //TODO
+                //instate of ++ and -- its possible using the array's length of the
+                //localstorage  to prevent problem
                 let cart = window.localStorage.getItem('cart');
                 cart++;
                 window.localStorage.setItem('cart', cart);
@@ -144,6 +162,8 @@ class Store {
         
         
     }
+
+   
     static removeFromCart(){
         let cart = window.localStorage.getItem('cart');
         cart--;
@@ -229,6 +249,9 @@ class UI {
     }
     static updateCart() {
 
+
+        
+
         const carritoNumb = document.querySelector('.carrito-numb');
         const carritoNumbLocal = window.localStorage.getItem('cart');
 
@@ -245,10 +268,13 @@ class UI {
 
 
         const body = document.querySelector('.cd-list');
+    
+        //TODO 
+        //with index of foratch loop instate of this 
         // url without url('')
         const url = e.target.parentElement.style.backgroundImage.slice(5, e.target.parentElement.style.backgroundImage.length - 2);
 
-        // console.log(url);
+        
 
         cds.forEach((e) => {
             if (e.url == url) {
@@ -281,7 +307,7 @@ class UI {
             UI.createModal(e);
 
 
-
+            //TODO
             //problem using displat block and none
             // modal.style.display = "block";
         }
@@ -304,8 +330,7 @@ class UI {
         cds.forEach((cd) => {
             const tbody = document.querySelector('.cd-list');
 
-            //show cd in terminal
-            // console.log(cd);
+           
 
 
             const div = document.createElement('div');
@@ -322,3 +347,6 @@ class UI {
 
     }
 }
+
+
+
