@@ -105,10 +105,13 @@ class Store {
 
 
     static addToCart(e) {
-
+//TODO:
+//prevent from adding two times de same cd
 
 
         if (e.target.classList.contains('modal-btn')) {
+            
+
             if (window.localStorage.getItem('cart') == null) {
 
                 window.localStorage.setItem('cart', '1');
@@ -158,6 +161,8 @@ class Store {
             e.target.parentElement.parentElement.remove();
 
 
+
+
         }
         
         
@@ -186,6 +191,7 @@ class Store {
             Store.removeFromCart()
             e.target.parentElement.remove()
             UI.updateCart();
+            UI.updatePrice();
                 }
     //UI.load
     }
@@ -195,6 +201,18 @@ class Store {
 
 
 class UI {
+
+    static updatePrice(){
+        const price =document.querySelector('.cart-bar-subtotal-price');
+       let total=0;
+        let localSt=JSON.parse(window.localStorage.getItem('cartArr'));
+        localSt.forEach((e,index)=>{
+            total+=localSt[index].price;
+        })
+          
+        price.innerHTML=total+`$`;
+        
+    }
 
     static showCartBar(e) {
         
@@ -212,7 +230,7 @@ class UI {
             ;
             body.appendChild(div);
             UI.loadCartBarItems();
-
+            UI.updatePrice();
 
 
 
@@ -269,7 +287,7 @@ class UI {
 
         const body = document.querySelector('.cd-list');
     
-        //TODO 
+        //TODO: 
         //with index of foratch loop instate of this 
         // url without url('')
         const url = e.target.parentElement.style.backgroundImage.slice(5, e.target.parentElement.style.backgroundImage.length - 2);
@@ -307,7 +325,7 @@ class UI {
             UI.createModal(e);
 
 
-            //TODO
+            //TODO:
             //problem using displat block and none
             // modal.style.display = "block";
         }
