@@ -225,7 +225,7 @@ class UI {
             <span class="modal-x">X</span>
             <h1>Your cart</h1>
             <div class="cart-bar-body">
-            </div>  <p class="font-weight-bold cart-bar-subtotal">Subtotal<span class="cart-bar-subtotal-price">300$</span></p>
+            </div>  <p class="font-weight-bold cart-bar-subtotal">Subtotal<span class="cart-bar-subtotal-price">0$</span></p>
             <a href="#" class="btn btn-danger btn-lg  cart-bar-btn">Checkout</a>`
             ;
             body.appendChild(div);
@@ -347,10 +347,6 @@ class UI {
 
         cds.forEach((cd) => {
             const tbody = document.querySelector('.cd-list');
-
-           
-
-
             const div = document.createElement('div');
             div.classList.add('cd');
             div.classList.add('mr-2');
