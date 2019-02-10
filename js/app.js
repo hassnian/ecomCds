@@ -19,7 +19,7 @@ const cds = [{
         'name': 'JoyTime',
         'artist': 'Marshmellow',
         'desc': 'Joytime is the debut studio album by electronic producer and DJ Marshmello, which was self-released through his label, Joytime Collective on January 8, 2016.[1][2] When it was released it landed on iTunes top electronic albums on the first day.',
-        'url': 'http://www.tricksware.com/wp-content/uploads/2017/04/Marshmello-2015-Joytime.png',
+        'url': 'https://studiosol-a.akamaihd.net/uploadfile/letras/albuns/9/5/e/7/527521471526292.jpg',
         'price': 34,
 
 
