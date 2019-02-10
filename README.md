@@ -1,9 +1,9 @@
 # ecomCds
 Music e-commerce of a cds made with VanillaJS and Bootstrap.
-##Objective
+## Objective
 Pactrice:
--Modals
--Javascript basics  
-  -LocalStorage
-  -EventPropegation
-  -Literal Templating
+- Modals
+- Javascript basics  
+  - LocalStorage
+  - EventPropegation
+  - Literal Templating
