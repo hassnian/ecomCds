@@ -1,4 +1,4 @@
-# ecomCds
+# e-commerce Cds
 Music e-commerce of cds made with VanillaJS and Bootstrap.
 ## Objective
 Pactrice:
